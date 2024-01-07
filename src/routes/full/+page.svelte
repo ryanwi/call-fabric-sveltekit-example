@@ -1,6 +1,5 @@
 <script lang="ts">
   import { page } from "$app/stores"
-  console.log($page.data.session);
 </script>
 
 {#if $page.data.session}
@@ -8,9 +7,8 @@
     You are signed in.
   </p>
   <p>Session expiry: {$page.data.session?.expires}</p>
-  <p>Subsriber ID: {$page.data.session?.user?.id}</p>
-  <p>Token: {$page.data.session?.accessToken}</p>
-
 {:else}
-  <a href="/auth/signin"> Sign in </a>
+  <p>
+    <a href="/auth/signin"> You must be signed in to view this page </a>
+  </p>
 {/if}

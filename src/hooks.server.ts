@@ -17,14 +17,36 @@ export const handle = SvelteKitAuth({
       token: SIGNALWIRE_ACCESS_TOKEN_URL,
       userinfo: SIGNALWIRE_USERINFO_URL,
       profile(profile) {
+        // console.log(profile);
         return {
           id: profile.id,
           email: profile.email,
           first_name: profile.first_name,
           last_name: profile.last_name,
           display_name: profile.display_name,
+          job_title: profile.job_title,
+          push_notification_key: profile.push_notification_key,
         }
       }
     } 
 	],
+  callbacks: {
+    async session({ session, token }) {
+      // Send properties to the client, like an access_token and user id from a provider.
+      session.accessToken = token.accessToken
+      session.user.id = token.id
+
+      return session
+    },    
+    async jwt({ token, account, profile }) {
+      // Persist the OAuth access_token and or the user id to the token right after signin
+      if (account) {
+        token.accessToken = account.access_token
+      }
+      if (profile) {
+        token.id = profile.id
+      }
+      return token
+    },
+  }
 });
