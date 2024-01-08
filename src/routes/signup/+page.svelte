@@ -13,7 +13,7 @@
 <div class="hero min-h-screen bg-base-200">
   <div class="hero-content">
     <div class="max-w-md">
-      <h1>Sign Up</h1>
+      <h1 class="text-4xl mb-4 font-extrabold">Sign Up</h1>
       
       {#if form?.errors?.message}
         <div role="alert" class="alert alert-warning">

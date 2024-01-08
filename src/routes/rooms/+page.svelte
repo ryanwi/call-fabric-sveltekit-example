@@ -4,7 +4,7 @@
   // console.log('page.svelte data =', data);
 </script>
 
-<h1>Rooms</h1>
+<h1 class="text-4xl mb-4 mt-4 font-extrabold">Rooms</h1>
 
 {#if data.session}
   {#if data.rooms}

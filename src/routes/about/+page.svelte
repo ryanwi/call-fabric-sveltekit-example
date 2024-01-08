@@ -3,6 +3,4 @@
   <meta name="description" content="About this app" />
 </svelte:head>
 
-<div class="text-column">
-  <h1>About this app</h1>
-</div>
+<h1 class="text-4xl mb-4 mt-4 font-extrabold">About this app</h1>

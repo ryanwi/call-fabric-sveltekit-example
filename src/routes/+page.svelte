@@ -3,7 +3,7 @@
 </script>
 
 {#if $page.data.session}
-  <h1>Get started</h1>
+  <h1 class="text-4xl mb-4 mt-4 font-extrabold">Get started</h1>
   <div>
     <p>You are signed in.</p>
     <p>Session expiry: {$page.data.session?.expires}</p>

@@ -4,4 +4,4 @@
     export let data: PageData;
 </script>
 
-<h1>Calls</h1>
+<h1 class="text-4xl mb-4 mt-4 font-extrabold">Calls</h1>
