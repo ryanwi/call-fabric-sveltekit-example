@@ -1,6 +1,6 @@
 # Call Fabric SvelteKit Example
 
-An example Call Fabric Application powered by:
+An example application using the SignalWire Call Fabric APIs and SDK powered by:
 
 * [SvelteKit](https://kit.svelte.dev/)
 * [SvelteKit Auth (Auth.js)](https://authjs.dev/reference/sveltekit)
