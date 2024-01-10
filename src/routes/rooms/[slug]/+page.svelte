@@ -1,8 +1,7 @@
 <script>
-  import { browser } from '$app/environment'; 
-
 	/** @type {import('./$types').PageData} */
 	export let data;
+  // console.log('page.svelte data =', data);
 </script>
 
 <svelte:head>

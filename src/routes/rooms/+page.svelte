@@ -1,7 +1,7 @@
 <script lang="ts">
   /** @type {import('./$types').PageData} */
   export let data;
-  console.log('page.svelte data =', data);
+  // console.log('page.svelte data =', data);
 </script>
 
 <h1 class="text-4xl mb-4 mt-4 font-extrabold">Rooms</h1>
