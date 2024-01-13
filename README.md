@@ -35,3 +35,9 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+
+## Credits 
+
+* [Setting up AuthJS with Sveltekit 2.0](https://www.youtube.com/watch?v=ridRgYSJ0ds)
+* [Example showing how to use Auth.js with SvelteKit](https://github.com/nextauthjs/sveltekit-auth-example)
