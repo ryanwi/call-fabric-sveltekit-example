@@ -40,15 +40,16 @@ export const handle = SvelteKitAuth({
   callbacks: {
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      session.accessToken = token.accessToken;
-      session.user.id = token.id;
-      // token.refreshToken = token.refresh_token;
-
-      return session;
+      return {
+        accessToken: token.accessToken,
+        id: token.id,  
+      }
     },
     async jwt({ token, account, profile }) {
-      console.log('hooks.server.ts jwt = ', token, account, profile);
-      // Persist the OAuth access_token and or the user id to the token right after signin
+      // console.log('hooks.server.ts jwt = ', token, account, profile);
+      // ?? Persist the OAuth access_token and or the user id to the token right after signin
+
+      // Save the access token and refresh token in the JWT on the initial login
       if (account) {
         return {
           accessToken: account.access_token,
