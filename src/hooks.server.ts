@@ -22,6 +22,7 @@ export const handle = SvelteKitAuth({
       token: SIGNALWIRE_ACCESS_TOKEN_URL,
       userinfo: SIGNALWIRE_USERINFO_URL,
       profile(profile) {
+        console.log('hooks.server.ts profile = ', profile);
         return {
           id: profile.id,
           email: profile.email,
@@ -56,8 +57,6 @@ export const handle = SvelteKitAuth({
           expiresAt: Math.floor(Date.now() / 1000 + account.expires_in),
           refreshToken: account.refresh_token,
         }
-        // token.accessToken = account.access_token;
-        // account.refresh_token
       } else if (Date.now() < token.expires_at * 1000) {
         // If the access token has not expired yet, return it
         return token;        
