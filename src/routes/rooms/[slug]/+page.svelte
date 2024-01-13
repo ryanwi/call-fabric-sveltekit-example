@@ -20,3 +20,11 @@
   <p>Room</p>
   <p>{JSON.stringify(data.room)}</p>  
 </div>
+
+<!-- this should only be rendered in the html sent to the browser -->
+<script type="text/javascript">
+  console.log("you made it to the browser");
+  const _token = "{data.session?.accessToken}";
+  const _host = "relay.swire.io";
+</script>
+<script type="text/javascript" src="https://unpkg.com/@signalwire/js"></script>
