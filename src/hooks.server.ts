@@ -44,7 +44,7 @@ export const handle = SvelteKitAuth({
       session.accessToken = token.accessToken;
       session.user.id = token.id;
 
-      return session;      
+      return session;
     },
     async jwt({ token, account, profile }) {
       // console.log('hooks.server.ts jwt = ', token, account, profile);
