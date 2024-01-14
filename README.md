@@ -36,6 +36,14 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
 
+## Contributing
+
+1. Fork it ( https://github.com/ryanwi/call-fabric-sveltekit-example/fork )
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Test it
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create a new Pull Request
 
 ## Credits 
 
