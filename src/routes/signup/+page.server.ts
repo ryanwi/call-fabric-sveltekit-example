@@ -1,21 +1,27 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { SIGNALWIRE_API_URL, SIGNALWIRE_PROJECT, SIGNALWIRE_API_TOKEN } from '$env/static/private';
-import type { PageServerLoad, Actions } from './$types';
+import type { CreateFabricSubscriberRequest } from '$lib/types/FabricSubscriber';
 
 /** @type {import('./$types').Actions} */
 export const actions = {
   default: async ({ request }) => {
     const formData = await request.formData();
-    const { email, password, firstName, lastName } = Object.fromEntries(formData);
-    const authString = Buffer.from(`${SIGNALWIRE_PROJECT}:${SIGNALWIRE_API_TOKEN}`).toString('base64');
 
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    const firstName = formData.get('firstName') as string;
+    const lastName = formData.get('lastName') as string;
+    const jobTitle = formData.get('jobTitle') as string;
+    const subscriber: CreateFabricSubscriberRequest = { email, password, first_name: firstName, last_name: lastName, job_title: jobTitle };
+
+    const authString = Buffer.from(`${SIGNALWIRE_PROJECT}:${SIGNALWIRE_API_TOKEN}`).toString('base64');
     const response = await fetch(`${SIGNALWIRE_API_URL}/api/fabric/subscribers`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: 'Basic ' + authString
       },
-      body: JSON.stringify({ email, password, first_name: firstName, last_name: lastName })
+      body: JSON.stringify(subscriber)
     });
 
     if (response.ok) {
