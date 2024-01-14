@@ -56,35 +56,17 @@ export const handle = SvelteKitAuth({
           expiresAt: Math.floor(Date.now() / 1000 + account.expires_in),
           refreshToken: account.refresh_token,
         }
-      } else if (Date.now() < token.expiresAt * 1000) {
-        // If the access token has not expired yet, return it
+      } else if (isValidToken(token)) {
         return token;        
       } else {
         // If the access token has expired, try to refresh it
         try {
-          const response = await fetch(SIGNALWIRE_ACCESS_TOKEN_URL, {
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams({
-              client_id: SIGNALWIRE_CLIENT_ID,
-              client_secret: SIGNALWIRE_CLIENT_SECRET,
-              grant_type: "refresh_token",
-              refresh_token: token.refreshToken,
-            }),
-            method: "POST",
-          })
+          const tokens: TokenSet = await refreshAccessToken(token);
 
-          const tokens: TokenSet = await response.json()
+          token.accessToken = tokens.access_token;
+          token.expiresAt = Math.floor(Date.now() / 1000 + tokens.expires_in);
 
-          if (!response.ok) throw tokens
-
-          return {
-            ...token, // Keep the previous token properties
-            accessToken: tokens.access_token,
-            expiresAt: Math.floor(Date.now() / 1000 + tokens.expires_in),
-            // Fall back to old refresh token, but note that
-            // many providers may only allow using a refresh token once.
-            refreshToken: tokens.refresh_token ?? token.refreshToken,
-          }
+          return token;
         } catch (error) {
           console.error("Error refreshing access token", error)
           // The error property will be used client-side to handle the refresh token error
@@ -94,3 +76,28 @@ export const handle = SvelteKitAuth({
     }
   }
 });
+
+async function refreshAccessToken(token: TokenSet) {
+  const response = await fetch(SIGNALWIRE_ACCESS_TOKEN_URL, {
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id: SIGNALWIRE_CLIENT_ID,
+      client_secret: SIGNALWIRE_CLIENT_SECRET,
+      grant_type: "refresh_token",
+      refresh_token: token.refreshToken,
+    }),
+    method: "POST",
+  });
+
+  if (!response.ok) {
+    console.error("Error refreshing access token", await response.text())
+    throw new Error("RefreshAccessTokenError");
+  }
+ 
+  const data = await response.json();
+  return data;
+}
+
+function isValidToken(token: TokenSet) {
+  return (Date.now() < token.expiresAt * 1000);
+}
