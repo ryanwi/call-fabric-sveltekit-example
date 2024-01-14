@@ -43,21 +43,21 @@ export const handle = SvelteKitAuth({
       // console.log('hooks.server.ts session = ', session, token);
       session.accessToken = token.accessToken;
       session.user.id = token.id;
+      session.user.email = token.email;
 
       return session;
     },
-    async jwt({ token, account, profile }) {
-      // console.log('hooks.server.ts jwt = ', token, account, profile);
-      // ?? Persist the OAuth access_token and or the user id to the token right after signin
-
-      // Save the access token and refresh token in the JWT on the initial login
-      if (account) {
+    async jwt({ token, account, user }) {
+      if (account && user) {
+        // Persist the OAuth access_token and or the user id to the token right after signin
         return {
+          id: user.id,
+          email: user.email,
           accessToken: account.access_token,
           expiresAt: Math.floor(Date.now() / 1000 + account.expires_in),
           refreshToken: account.refresh_token,
         }
-      } else if (Date.now() < token.expires_at * 1000) {
+      } else if (Date.now() < token.expiresAt * 1000) {
         // If the access token has not expired yet, return it
         return token;        
       } else {
