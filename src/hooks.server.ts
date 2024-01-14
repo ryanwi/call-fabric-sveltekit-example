@@ -40,7 +40,6 @@ export const handle = SvelteKitAuth({
   callbacks: {
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      // console.log('hooks.server.ts session = ', session, token);
       session.accessToken = token.accessToken;
       session.user.id = token.id;
       session.user.email = token.email;
