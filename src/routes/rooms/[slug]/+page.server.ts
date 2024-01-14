@@ -11,7 +11,7 @@ export async function load({ locals, params }) {
     method: 'GET',
     headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${session.accessToken}`
+        Authorization: `Bearer ${session.sat}`
     }
   });
 

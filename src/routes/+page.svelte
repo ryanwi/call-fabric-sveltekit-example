@@ -8,7 +8,7 @@
     <p>You are signed in.</p>
     <p>Session expiry: {$page.data.session?.expires}</p>
     <p>Subsriber ID: {$page.data.session?.user?.id}</p>
-    <p>Token: {$page.data.session?.accessToken}</p>
+    <p>Token: {$page.data.session?.sat}</p>
   </div>
 {:else}
   <div class="hero min-h-screen bg-base-200">
