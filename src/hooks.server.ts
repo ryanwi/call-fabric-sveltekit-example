@@ -22,7 +22,6 @@ export const handle = SvelteKitAuth({
       token: SIGNALWIRE_ACCESS_TOKEN_URL,
       userinfo: SIGNALWIRE_USERINFO_URL,
       profile(profile) {
-        console.log('hooks.server.ts profile = ', profile);
         return {
           id: profile.id,
           email: profile.email,
@@ -41,10 +40,11 @@ export const handle = SvelteKitAuth({
   callbacks: {
     async session({ session, token }) {
       // Send properties to the client, like an access_token and user id from a provider.
-      return {
-        accessToken: token.accessToken,
-        id: token.id,  
-      }
+      // console.log('hooks.server.ts session = ', session, token);
+      session.accessToken = token.accessToken;
+      session.user.id = token.id;
+
+      return session;      
     },
     async jwt({ token, account, profile }) {
       // console.log('hooks.server.ts jwt = ', token, account, profile);
