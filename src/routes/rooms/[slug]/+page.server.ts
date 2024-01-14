@@ -18,7 +18,6 @@ export async function load({ locals, params }) {
   if (response.ok) {
     const rooms = await response.json();
     let room = rooms.data.find(item => item.name === slug);
-    console.log("room = ", room);
     return {
       room: room
     }  

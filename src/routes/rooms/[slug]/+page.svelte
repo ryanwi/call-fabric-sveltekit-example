@@ -7,9 +7,6 @@
 
   export let room = data.room;
   let sat = data.session?.sat;
-
-  console.log("sat in the browser?", sat);
-  // yes AND it's on the server console though.
 </script>
 
 <h1 class="text-4xl mb-4 mt-4 font-extrabold">Room</h1>
