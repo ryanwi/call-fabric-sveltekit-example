@@ -63,10 +63,11 @@ export const handle = SvelteKitAuth({
         try {
           const tokens: TokenSet = await refreshAccessToken(token);
 
-          token.accessToken = tokens.access_token;
-          token.expiresAt = Math.floor(Date.now() / 1000 + tokens.expires_in);
-
-          return token;
+          return {
+            ...token,
+            accessToken: tokens.access_token,
+            expiresAt: Math.floor(Date.now() / 1000 + tokens.expires_in)            
+          };
         } catch (error) {
           console.error("Error refreshing access token", error)
           // The error property will be used client-side to handle the refresh token error
