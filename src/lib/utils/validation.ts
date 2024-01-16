@@ -3,6 +3,6 @@ export const validateEmail = (email: string) => {
   if (domain !== 'signalwire.com') {
     return false;
   }
-  
+
   return true;
 };

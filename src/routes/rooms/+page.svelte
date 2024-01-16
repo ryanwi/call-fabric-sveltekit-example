@@ -11,16 +11,18 @@
 {#if data.session}
   {#if data.rooms}
     <div class="grid grid-cols-3">
-      {#each data.rooms as room (room.id)}
+      {#each data.rooms as room (room.resource_id)}
         <RoomCard {room} />
       {/each}
     </div>
   {:else if data.error}
-    <p>{data.error}</p>  
+    <p>{data.error}</p>
   {/if}
 {:else}
   <h1>Access Denied</h1>
   <p>
-    <a href="/auth/signin" aria-label="Sign in"> You must be signed in to view this page </a>
+    <a href="/auth/signin" aria-label="Sign in">
+      You must be signed in to view this page
+    </a>
   </p>
 {/if}

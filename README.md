@@ -2,10 +2,10 @@
 
 An example application using the SignalWire Call Fabric APIs and SDK powered by:
 
-* [SvelteKit](https://kit.svelte.dev/)
-* [SvelteKit Auth (Auth.js)](https://authjs.dev/reference/sveltekit)
-* [Tailwind CSS](https://tailwindcss.com/)
-* [DaisyUI](https://daisyui.com/)
+- [SvelteKit](https://kit.svelte.dev/)
+- [SvelteKit Auth (Auth.js)](https://authjs.dev/reference/sveltekit)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [DaisyUI](https://daisyui.com/)
 
 ## Developing
 
@@ -45,7 +45,7 @@ You can preview the production build with `npm run preview`.
 5. Push to the branch (`git push origin my-new-feature`)
 6. Create a new Pull Request
 
-## Credits 
+## Credits
 
-* [Setting up AuthJS with Sveltekit 2.0](https://www.youtube.com/watch?v=ridRgYSJ0ds)
-* [Example showing how to use Auth.js with SvelteKit](https://github.com/nextauthjs/sveltekit-auth-example)
+- [Setting up AuthJS with Sveltekit 2.0](https://www.youtube.com/watch?v=ridRgYSJ0ds)
+- [Example showing how to use Auth.js with SvelteKit](https://github.com/nextauthjs/sveltekit-auth-example)

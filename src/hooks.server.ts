@@ -4,7 +4,7 @@ import {
   SIGNALWIRE_CLIENT_SECRET,
   SIGNALWIRE_AUTH_URL,
   SIGNALWIRE_ACCESS_TOKEN_URL,
-  SIGNALWIRE_USERINFO_URL
+  SIGNALWIRE_USERINFO_URL,
 } from '$env/static/private';
 
 export const handle = SvelteKitAuth({
@@ -15,7 +15,7 @@ export const handle = SvelteKitAuth({
       type: 'oauth',
       authorization: {
         url: SIGNALWIRE_AUTH_URL,
-        params: { scope: 'email' }
+        params: { scope: 'email' },
       },
       clientId: SIGNALWIRE_CLIENT_ID,
       clientSecret: SIGNALWIRE_CLIENT_SECRET,
@@ -32,10 +32,10 @@ export const handle = SvelteKitAuth({
           timeZone: profile.time_zone,
           counry: profile.country,
           region: profile.region,
-          // companyName: profile.company_name,
+          companyName: profile.company_name,
         };
-      }
-    }
+      },
+    },
   ],
   callbacks: {
     async session({ session, token }) {
@@ -55,9 +55,9 @@ export const handle = SvelteKitAuth({
           accessToken: account.access_token,
           expiresAt: Math.floor(Date.now() / 1000 + account.expires_in),
           refreshToken: account.refresh_token,
-        }
+        };
       } else if (isValidToken(token)) {
-        return token;        
+        return token;
       } else {
         // If the access token has expired, try to refresh it
         try {
@@ -66,39 +66,39 @@ export const handle = SvelteKitAuth({
           return {
             ...token,
             accessToken: tokens.access_token,
-            expiresAt: Math.floor(Date.now() / 1000 + tokens.expires_in)            
+            expiresAt: Math.floor(Date.now() / 1000 + tokens.expires_in),
           };
         } catch (error) {
-          console.error("Error refreshing access token", error)
+          console.error('Error refreshing access token', error);
           // The error property will be used client-side to handle the refresh token error
-          return { ...token, error: "RefreshAccessTokenError" as const }
-        }        
+          return { ...token, error: 'RefreshAccessTokenError' as const };
+        }
       }
-    }
-  }
+    },
+  },
 });
 
 async function refreshAccessToken(token: TokenSet) {
   const response = await fetch(SIGNALWIRE_ACCESS_TOKEN_URL, {
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
       client_id: SIGNALWIRE_CLIENT_ID,
       client_secret: SIGNALWIRE_CLIENT_SECRET,
-      grant_type: "refresh_token",
+      grant_type: 'refresh_token',
       refresh_token: token.refreshToken,
     }),
-    method: "POST",
+    method: 'POST',
   });
 
   if (!response.ok) {
-    console.error("Error refreshing access token", await response.text())
-    throw new Error("RefreshAccessTokenError");
+    console.error('Error refreshing access token', await response.text());
+    throw new Error('RefreshAccessTokenError');
   }
- 
+
   const data = await response.json();
   return data;
 }
 
 function isValidToken(token: TokenSet) {
-  return (Date.now() < token.expiresAt * 1000);
+  return Date.now() < token.expiresAt * 1000;
 }

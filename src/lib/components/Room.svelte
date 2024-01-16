@@ -10,8 +10,8 @@
   if (browser) {
     const _token = sat;
     const _host = PUBLIC_RELAY_HOST;
-    const destination = room.channels["video"];
-    console.log("This is the browser", _token, _host, destination)
+    const destination = room.channels['video'];
+    console.log('This is the browser', _token, _host, destination);
   }
 </script>
 
@@ -23,7 +23,7 @@
 
 <div>
   <p>Room</p>
-  <p>{JSON.stringify(room)}</p>  
+  <p>{JSON.stringify(room)}</p>
 </div>
 
 <p>Token: {sat}</p>

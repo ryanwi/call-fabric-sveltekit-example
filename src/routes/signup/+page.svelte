@@ -1,8 +1,8 @@
 <script lang="ts">
   /** @type {import('./$types').ActionData} */
   export let form;
-  const formDataErrorClasses = "input input-bordered w-full input-error";
-  const formDataBaseClasses = "input input-bordered w-full";
+  const formDataErrorClasses = 'input input-bordered w-full input-error';
+  const formDataBaseClasses = 'input input-bordered w-full';
   let emailClass = form?.errors?.email ? formDataErrorClasses : formDataBaseClasses;
 </script>
 
