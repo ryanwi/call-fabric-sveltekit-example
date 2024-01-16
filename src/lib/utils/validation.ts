@@ -1,5 +1,8 @@
-import { isEmail } from 'validator';
-
 export const validateEmail = (email: string) => {
-  return isEmail(email);
+  const domain = email.split('@')[1];
+  if (domain !== 'signalwire.com') {
+    return false;
+  }
+  
+  return true;
 };

@@ -7,6 +7,8 @@
 
   // console.log('page.svelte data =', data);
   // console.log('page.svelte form =', form);
+
+  let emailClass = form?.errors?.email ? "input input-bordered w-full input-error" : "input input-bordered w-full";
 </script>
 
 
@@ -39,8 +41,13 @@
           <div class="mb-4">
             <label>
               Email:
-              <input name="email" type="email" value={form?.email ?? ''} required class="input input-bordered w-full" />
+              <input name="email" type="email" value={form?.email ?? ''} required class={emailClass} />
             </label>
+            {#if form?.errors?.email}
+              <p class="alert alert-error">
+                {form?.errors?.email}
+              </p>
+            {/if}
           </div>
           <div class="mb-4">
             <label>

@@ -13,11 +13,16 @@ export const actions = {
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
     const jobTitle = formData.get('jobTitle') as string;
+
+    const errors: Record<string, unknown> = {}
+        
     const subscriber: CreateFabricSubscriberRequest = { email, password, first_name: firstName, last_name: lastName, job_title: jobTitle };
 
     if (!validateEmail(email)) {
-      const errors: Record<string, unknown> = {}
       errors.email = 'Invalid email address';
+    }
+
+    if (Object.keys(errors).length > 0) {
       const data = {
         data: Object.fromEntries(formData),
         errors,
