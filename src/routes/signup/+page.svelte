@@ -1,14 +1,9 @@
 <script lang="ts">
-  /** @type {import('./$types').PageData} */
-  // export let data;
-
   /** @type {import('./$types').ActionData} */
   export let form;
-
-  // console.log('page.svelte data =', data);
-  // console.log('page.svelte form =', form);
-
-  let emailClass = form?.errors?.email ? "input input-bordered w-full input-error" : "input input-bordered w-full";
+  const formDataErrorClasses = "input input-bordered w-full input-error";
+  const formDataBaseClasses = "input input-bordered w-full";
+  let emailClass = form?.errors?.email ? formDataErrorClasses : formDataBaseClasses;
 </script>
 
 
@@ -29,19 +24,35 @@
           <div class="mb-4">
             <label>
               First Name:
-              <input name="firstName" type="text" value={form?.firstName ?? ''} required class="input input-bordered w-full" />
+              <input name="firstName" type="text" value={form?.data?.firstName ?? ''} required class="input input-bordered w-full" />
             </label>
+            {#if form?.errors?.firstName}
+              <div class="text-red-500 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                  <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                </svg>
+                {form?.errors?.firstName}
+              </div>              
+            {/if}
           </div>
           <div class="mb-4">
             <label>
               Last Name:
-              <input name="lastName" type="text" value={form?.lastName ?? ''} required class="input input-bordered w-full" />
+              <input name="lastName" type="text" value={form?.data.lastName ?? ''} required class="input input-bordered w-full" />
             </label>
+            {#if form?.errors?.lastName}
+              <div class="text-red-500 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                  <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                </svg>
+                {form?.errors?.lastName}
+              </div>              
+            {/if}
           </div>
           <div class="mb-4">
             <label>
               Email:
-              <input name="email" type="email" value={form?.email ?? ''} required class={emailClass} />
+              <input name="email" type="email" value={form?.data?.email ?? ''} required class={emailClass} />
             </label>
             {#if form?.errors?.email}
               <div class="text-red-500 flex items-center gap-2">
@@ -55,14 +66,30 @@
           <div class="mb-4">
             <label>
               Password:
-              <input name="password" type="text" required class="input input-bordered w-full" />
+              <input name="password" type="text" value={form?.data?.password ?? ''} required class="input input-bordered w-full" />
             </label>
+            {#if form?.errors?.password}
+              <div class="text-red-500 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                  <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                </svg>
+                {form?.errors?.password}
+              </div>              
+            {/if}
           </div>
           <div class="mb-4">
             <label>
               Job Title:
-              <input name="jobTitle" type="text" class="input input-bordered w-full" />
+              <input name="jobTitle" type="text" value={form?.data?.jobTitle ?? ''} class="input input-bordered w-full" />
             </label>
+            {#if form?.errors?.jobTitle}
+              <div class="text-red-500 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
+                  <path fill-rule="evenodd" d="M8.485 2.495c.673-1.167 2.357-1.167 3.03 0l6.28 10.875c.673 1.167-.17 2.625-1.516 2.625H3.72c-1.347 0-2.189-1.458-1.515-2.625L8.485 2.495ZM10 5a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 10 5Zm0 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd" />
+                </svg>
+                {form?.errors?.jobTitle}
+              </div>              
+            {/if}
           </div>
           <div class="">
             <button type="submit" class="btn btn-primary">Sign Up</button>
