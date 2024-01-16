@@ -19,9 +19,9 @@ export const actions = {
     const subscriber: CreateFabricSubscriberRequest = { email, password, first_name: firstName, last_name: lastName, job_title: jobTitle };
 
     if (!validateEmail(email)) {
-      errors.email = 'Invalid email address';
+      errors.email = 'Please enter a valid email address';
     }
-
+    
     if (Object.keys(errors).length > 0) {
       const data = {
         data: Object.fromEntries(formData),
