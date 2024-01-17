@@ -11,4 +11,4 @@
       <a href="/rooms/{room.name}" class="btn btn-primary">Join</a>
     </div>
   </div>
-</div> 
+</div>
