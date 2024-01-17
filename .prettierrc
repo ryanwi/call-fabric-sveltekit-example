@@ -5,8 +5,12 @@
   "tabWidth": 2,
   "singleQuote": true,
   "jsxSingleQuote": true,
-  "jsxBracketSameLine": false,
   "arrowParens": "always",
   "plugins": ["prettier-plugin-svelte"],
-  "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": { "printWidth": 120, "parser": "svelte" }
+    }
+  ]
 }
