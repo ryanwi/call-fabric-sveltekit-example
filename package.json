@@ -15,7 +15,7 @@
     "test:unit": "vitest"
   },
   "devDependencies": {
-    "@auth/core": "^0.20.0",
+    "@auth/core": "^0.21.0",
     "@auth/sveltekit": "^0.5.1",
     "@playwright/test": "^1.28.1",
     "@sveltejs/adapter-auto": "^3.0.0",
