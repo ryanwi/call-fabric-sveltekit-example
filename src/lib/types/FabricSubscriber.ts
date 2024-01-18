@@ -8,7 +8,7 @@ export interface FabricSubscriber {
   time_zone?: string;
   country?: string;
   region?: string;
-  companyName?: string;
+  company_name?: string;
 }
 
 export interface CreateFabricSubscriberRequest

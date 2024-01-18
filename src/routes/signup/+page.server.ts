@@ -17,6 +17,7 @@ export const actions = {
     const firstName = formData.get('firstName') as string;
     const lastName = formData.get('lastName') as string;
     const jobTitle = formData.get('jobTitle') as string;
+    const companyName = formData.get('companyName') as string;
 
     const errors: Record<string, unknown> = {};
 
@@ -26,6 +27,7 @@ export const actions = {
       first_name: firstName,
       last_name: lastName,
       job_title: jobTitle,
+      company_name: companyName,
     };
 
     if (!validateEmail(email)) {
