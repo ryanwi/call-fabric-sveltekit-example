@@ -2,6 +2,7 @@
 
 An example application using the SignalWire Call Fabric APIs and SDK powered by:
 
+- [SignalWire Voice, Video, and Chat APIs]( https://developer.signalwire.com/)
 - [SvelteKit](https://kit.svelte.dev/)
 - [SvelteKit Auth (Auth.js)](https://authjs.dev/reference/sveltekit)
 - [Tailwind CSS](https://tailwindcss.com/)
