@@ -1,15 +1,15 @@
+import type { PageServerLoad } from './$types';
 import { redirect } from '@sveltejs/kit';
-import { SIGNALWIRE_FABRIC_API_URL } from '$env/static/private';
+import { PUBLIC_SIGNALWIRE_FABRIC_API_URL } from '$env/static/public';
 
-// /** @type {import('./$types').PageServerLoad} */
-export async function load({ locals, params }) {
+export const load: PageServerLoad = async ({ locals, params }) => {
   const session = await locals.getSession();
   if (!session?.user) throw redirect(303, '/auth/signin');
 
   const { slug } = params;
 
   const response = await fetch(
-    `${SIGNALWIRE_FABRIC_API_URL}/addresses?type=room`,
+    `${PUBLIC_SIGNALWIRE_FABRIC_API_URL}/addresses?type=room`,
     {
       method: 'GET',
       headers: {
